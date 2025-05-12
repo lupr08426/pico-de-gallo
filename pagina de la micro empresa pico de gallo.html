@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Picante Gourmet - Pico de Gallo Innovador</title>
+    <style>
+        :root {
+            --primary: #e74c3c;
+            --secondary: #27ae60;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+        }
+        
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/400') center/cover no-repeat;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .tagline {
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        
+        nav {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        .menu li {
+            position: relative;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .menu-item:hover {
+            background-color: #c0392b;
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+            display: none;
+            z-index: 1;
+        }
+        
+        .menu li:hover .dropdown {
+            display: block;
+        }
+        
+        .dropdown a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .dropdown a:hover {
+            background-color: #f1f1f1;
+            color: var(--primary);
+        }
+        
+        .hero {
+            padding: 3rem 1rem;
+            text-align: center;
+            background-color: var(--light);
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #219653;
+            transform: translateY(-3px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f1f1f1;
+            position: relative;
+        }
+        
+        .product-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .product-button {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .product-button:hover {
+            background-color: #c0392b;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 2rem 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .feature p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .promotions {
+            background-color: var(--light);
+            padding: -2rem 0;
+        }
+        
+        .promo-card {
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .promo-content {
+            padding: 2rem;
+        }
+        
+        .promo-title {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .promo-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .promo-button {
+            align-self: flex-start;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .promo-button:hover {
+            background-color: #e67e22;
+        }
+        
+        .about {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .payment {
+            background-color: var(--light);
+            padding: 4rem 0;
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .payment-method {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 180px;
+        }
+        
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .payment-method h4 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .payment-method p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info div {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            margin-right: 0.8rem;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .form-submit {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .form-submit:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .menu {
+                flex-direction: column;
+            }
+            
+            .dropdown {
+                position: static;
+                display: none;
+                width: 100%;
+                box-shadow: none;
+            }
+            
+            .menu li:hover .dropdown {
+                display: block;
+            }
+            
+            .product-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">El Picante Gourmet</div>
+        <div class="tagline">Una nueva experiencia en pico de gallo</div>
+    </header>
+    
+    <nav>
+        <ul class="menu">
+            <li><a href="#inicio" class="menu-item">Inicio</a></li>
+            <li>
+                <a href="#productos" class="menu-item">Productos</a>
+                <div class="dropdown">
+                    <a href="#tradicional">Pico de Gallo Tradicional</a>
+                    <a href="#brochetas">Brochetas de Pico de Gallo</a>
+                    <a href="#gourmet">Pico de Gallo Gourmet</a>
+                    <a href="#combos">Combos Especiales</a>
+                </div>
+            </li>
+            <li><a href="#promociones" class="menu-item">Promociones</a></li>
+            <li><a href="#acerca" class="menu-item">Acerca de Nosotros</a></li>
+            <li><a href="#pago" class="menu-item">Formas de Pago</a></li>
+            <li><a href="#contacto" class="menu-item">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <section class="hero" id="inicio">
+        <h2>¡Reinventamos el Pico de Gallo!</h2>
+        <p>Descubre una forma innovadora de disfrutar el pico de gallo. Nuestras creaciones fusionan sabores tradicionales con presentaciones modernas para sorprender a tu paladar.</p>
+        <a href="#productos" class="cta-button">Ver Productos</a>
+    </section>
+    
+    <section class="container" id="productos">
+        <h2 class="section-title">Nuestros Productos</h2>
+        
+        <div id="tradicional" class="products">
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Popular</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pico de Gallo Clásico</h3>
+                    <p class="product-description">La receta tradicional con un toque especial. Jitomate, cebolla, cilantro y chile serrano fresco.</p>
+                    <div class="product-price">$25.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Picante</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pico de Gallo Habanero</h3>
+                    <p class="product-description">Para los amantes del picante. Preparado con habanero fresco para un sabor intenso.</p>
+                    <div class="product-price">$30.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Suave</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pico de Gallo Suave</h3>
+                    <p class="product-description">Versión sin picante, ideal para toda la familia. Conserva todo el sabor sin el ardor.</p>
+                    <div class="product-price">$25.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title" id="brochetas">Brochetas de Pico de Gallo</h2>
+        <div class="products">
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Nuevo</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Brochetas Vegetarianas</h3>
+                    <p class="product-description">Brochetas de verduras frescas aderezadas con nuestro pico de gallo especial.</p>
+                    <div class="product-price">$40.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Favorito</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Brochetas de Pollo</h3>
+                    <p class="product-description">Jugosas brochetas de pollo marinado con pico de gallo fresco y limón.</p>
+                    <div class="product-price">$45.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Brochetas Mixtas</h3>
+                    <p class="product-description">Combinación de carnes y verduras con tres tipos de pico de gallo para probar.</p>
+                    <div class="product-price">$50.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title" id="gourmet">Pico de Gallo Gourmet</h2>
+        <div class="products">
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Premium</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pico de Gallo con Mango</h3>
+                    <p class="product-description">Mezcla tropical con mango fresco que agrega un toque dulce y refrescante.</p>
+                    <div class="product-price">$35.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Gourmet</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pico de Gallo con Aguacate</h3>
+                    <p class="product-description">Cremosa combinación con aguacate maduro que aporta textura y sabor único.</p>
+                    <div class="product-price">$40.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Especial</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pico de Gallo Ahumado</h3>
+                    <p class="product-description">Preparado con chile chipotle ahumado para un sabor intenso y aromático.</p>
+                    <div class="product-price">$38.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="section-title" id="combos">Combos Especiales</h2>
+        <div class="products">
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Promoción</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Combo Fiesta</h3>
+                    <p class="product-description">3 variedades de pico de gallo con totopos caseros. Ideal para compartir.</p>
+                    <div class="product-price">$80.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Familiar</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Combo Familiar</h3>
+                    <p class="product-description">5 brochetas de pollo, 5 vegetarianas y 2 picos de gallo a elección.</p>
+                    <div class="product-price">$220.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image" style="background: url('/api/placeholder/300/200') center/cover no-repeat;">
+                    <div class="product-tag">Ahorro</div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Combo Degustación</h3>
+                    <p class="product-description">Prueba nuestros 6 tipos de pico de gallo en presentaciones pequeñas.</p>
+                    <div class="product-price">$120.00</div>
+                    <button class="product-button" onclick="openModal('pedido')">Ordenar Ahora</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <h2 class="section-title">¿Por qué elegirnos?</h2>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-pepper-hot"></i>
+                </div>
+                <h3>Ingredientes Frescos</h3>
+                <p>Usamos solo ingredientes de temporada seleccionados diariamente para garantizar la máxima frescura y sabor.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Innovación Constante</h3>
+                <p>Reinventamos el pico de gallo tradicional con combinaciones únicas y presentaciones creativas.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Entrega Rápida</h3>
+                <p>Llevamos nuestros productos a tu puerta en el menor tiempo posible para que disfrutes de la máxima frescura.</p>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Hecho con Pasión</h3>
+                <p>Cada preparación es elaborada con dedicación y amor por la cocina mexicana contemporánea.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="promotions container" id="promociones">
+        <h2 class="section-title">Promociones Especiales</h2>
+        
+        <div class="promo-card">
+            <div class="promo-content">
+                <h3 class="promo-title">2x1 en Brochetas los Martes</h3>
+                <p class="promo-description">Todos los martes lleva 2 órdenes de brochetas por el precio de 1. Válido en brochetas vegetarianas y de pollo.</p>
+                <a href="#" class="promo-button" onclick="openModal('pedido')">Aprovechar Oferta</a>
+            </div>
+        </div>
+        
+        <div class="promo-card">
+            <div class="promo-content">
+                <h3 class="promo-title">Descuento para Estudiantes</h3>
+                <p class="promo-description">Presenta tu credencial de estudiante y obtén un 15% de descuento en toda tu compra. Promoción válida todos los días.</p>
+                <a href="#" class="promo-button" onclick="openModal('pedido')">Ordenar con Descuento</a>
+            </div>
+        </div>
+        
+        <div class="promo-card">
+            <div class="promo-content">
+                <h3 class="promo-title">Combo del Mes</h3>
+                <p class="promo-description">Cada mes creamos un combo especial con productos de temporada a un precio irresistible. ¡Pregunta por nuestra promoción actual!</p>
+                <a href="#" class="promo-button" onclick="openModal('pedido')">Ver Oferta del Mes</a>
+            </div>
+        </div>
+
+    </section>
+    
+    <section class="about container" id="acerca">
+        <h2 class="section-title">Acerca de Nosotros</h2>
+        <div class="about-content">
+            <div class="about-image" style="background: url('/api/placeholder/500/400') center/cover no-repeat;"></div>
+            <div class="about-text">
+                <h3>Nuestra Historia</h3>
+                <p>El Picante Gourmet nació como un proyecto escolar con una visión clara: transformar el tradicional pico de gallo mexicano en una experiencia gastronómica innovadora y sorprendente.</p>
+                <p>Comenzamos experimentando con diferentes ingredientes, texturas y presentaciones hasta desarrollar nuestras recetas únicas que hoy nos caracterizan. Lo que empezó como una idea en el salón de clases, se ha convertido en un concepto culinario que desafía lo convencional.</p>
+                <p>Nuestro compromiso es ofrecer productos de alta calidad, elaborados con ingredientes frescos y procesos artesanales que respetan la esencia de la cocina mexicana mientras la llevan a nuevos horizontes.</p>
+                <p>Hoy, El Picante Gourmet es reconocido por sus creaciones originales, su servicio excepcional y su constante innovación en el mundo del pico de gallo.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="payment container" id="pago">
+        <h2 class="section-title">Formas de Pago</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Ofrecemos diversas opciones para que puedas realizar tu pago de la manera más cómoda y segura</p>
+        
+        <div class="payment-methods">
+            <div class="payment-method">
+                <div class="payment-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h4>Efectivo</h4>
+                <p>Paga al momento de la entrega o en nuestra sucursal</p>
+            </div>
+            
+            <div class="payment-method">
+                <div class="payment-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h4>Tarjeta</h4>
+                <p>Aceptamos todas las tarjetas de crédito y débito</p>
+            </div>
+            
+            <div class="payment-method">
+                <div class="payment-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h4>Transferencia</h4>
+                <p>Transferencia bancaria o con aplicaciones móviles</p>
+            </div>
+            
+            <div class="payment-method">
+                <div class="payment-icon">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <h4>Código QR</h4>
+                <p>Escanea y paga de forma rápida y segura</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>El Picante Gourmet</h3>
+                    <p>Reinventando el tradicional pico de gallo con creatividad y pasión para ofrecer una experiencia culinaria única.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#promociones">Promociones</a></li>
+                        <li><a href="#acerca">Acerca de Nosotros</a></li>
+                        <li><a href="#pago">Formas de Pago</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Horario</h3>
+                    <ul class="footer-links">
+                        <li>Lunes a Viernes: 10:00 - 20:00</li>
+                        <li>Sábado: 10:00 - 18:00</li>
+                        <li>Domingo: 11:00 - 16:00</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <div class="contact-info">
+                        <div>
+                            <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                            <span>Av. Universidad 1234, Col. Centro</span>
+                        </div>
+                        <div>
+                            <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                            <span>(123) 456-7890</span>
+                        </div>
+                        <div>
+                            <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                            <span>info@elpicantegourmet.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 El Picante Gourmet. Todos los derechos reservados. | Proyecto Escolar</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal de Pedido -->
+    <div id="pedidoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('pedido')">&times;</span>
+            <h3 class="modal-title">Realizar Pedido</h3>
+            <form id="pedidoForm">
+                <div class="form-group">
+                    <label class="form-label" for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Correo electrónico:</label>
+                    <input type="email" id="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="direccion">Dirección de entrega:</label>
+                    <textarea id="direccion" class="form-textarea" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="producto">Producto:</label>
+                    <select id="producto" class="form-input" required>
+                        <option value="" selected disabled>Selecciona un producto</option>
+                        <option value="clasico">Pico de Gallo Clásico</option>
+                        <option value="habanero">Pico de Gallo Habanero</option>
+                        <option value="suave">Pico de Gallo Suave</option>
+                        <option value="brochetasveg">Brochetas Vegetarianas</option>
+                        <option value="brochetaspollo">Brochetas de Pollo</option>
+                        <option value="brochetasmix">Brochetas Mixtas</option>
+                        <option value="mango">Pico de Gallo con Mango</option>
+                        <option value="aguacate">Pico de Gallo con Aguacate</option>
+                        <option value="ahumado">Pico de Gallo Ahumado</option>
+                        <option value="combofiesta">Combo Fiesta</option>
+                        <option value="combofamiliar">Combo Familiar</option>
+                        <option value="combodegustacion">Combo Degustación</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="cantidad">Cantidad:</label>
+                    <input type="number" id="cantidad" min="1" value="1" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="metodo_pago">Método de pago:</label>
+                    <select id="metodo_pago" class="form-input" required>
+                        <option value="" selected disabled>Selecciona un método de pago</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta</option>
+                        <option value="transferencia">Transferencia</option>
+                        <option value="qr">Código QR</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="comentarios">Comentarios adicionales:</label>
+                    <textarea id="comentarios" class="form-textarea"></textarea>
+                </div>
+                
+                <button type="submit" class="form-submit">Enviar Pedido</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Modal functions
+        function openModal(type) {
+            if (type === 'pedido') {
+                document.getElementById('pedidoModal').style.display = 'block';
+            }
+        }
+        
+        function closeModal(type) {
+            if (type === 'pedido') {
+                document.getElementById('pedidoModal').style.display = 'none';
+            }
+        }
+        
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+        
+        // Form submission
+        document.getElementById('pedidoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aquí iría el código para procesar el formulario
+            // En un proyecto real, se enviaría a un servidor
+            
+            alert('¡Tu pedido ha sido recibido! Te contactaremos pronto para confirmar.');
+            closeModal('pedido');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+        
+        // Product filtering system could be added here
+        
+        // Promotional countdown timer
+        function startTimer(duration, display) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+                
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+        
+        // Initialize timer when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Timer for 24 hours
+            const twentyFourHours = 24 * 60 * 60;
+            const display = document.querySelector('.countdown');
+            
+            // Only start if element exists
+            if(display) {
+                startTimer(twentyFourHours, display);
+            }
+        });
+    </script>
+</body>
+</html>
